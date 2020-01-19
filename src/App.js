@@ -1,12 +1,12 @@
 import React from 'react';
-import { PositionDemo } from './PositionDemo';
+import { PositionDemo } from './components/Position/PositionDemo';
 import './App.css';
 
 
 function App() {
   return (
     <div className="App">
-      <PositionDemo />
+      {/* <PositionDemo /> */}
     </div>
   );
 }

@@ -11,13 +11,8 @@ export const PositionDemo = () => {
   }, []);
 
   
-
   function success(position) {
     const crd = position.coords;
-    // console.log("Your current position is: ");
-    // console.log(`Latitude : ${crd.latitude}`);
-    // console.log(`Longitude: ${crd.longitude}`);
-    // console.log(`More or less ${crd.accuracy} meters`);
     setLatitude(crd.latitude);
     setLongitude(crd.longitude);
   }
