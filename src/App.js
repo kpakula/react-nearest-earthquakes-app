@@ -1,23 +1,25 @@
 import React from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Container, Row, Col } from "react-bootstrap";
-import RandomComponent from "./components/testComponents/RandomComponent";
+import { Container, Col, Row } from "react-bootstrap";
+import { CurrentGeoLocation } from "./components/Position/CurrentGeoLocation";
 
 function App() {
   return (
-      <Container fluid={true} className="App">
-        {/* <Row>
-          <Col className="border">1 of 2</Col>
-          <Col className="border">2 of 2</Col>
-        </Row>
-        <Row>
-          <Col className="border">1 of 3</Col>
-          <Col className="border">2 of 3</Col>
-          <Col className="border">3 of 3</Col>
-        </Row> */}
-        <RandomComponent/>
-      </Container>
+
+    <Container fluid={true} className="App">
+      <Row>
+        <Col>
+          <CurrentGeoLocation/>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+        
+        </Col>
+      </Row>
+    </Container>
+
   );
 }
 
