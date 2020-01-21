@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Container, Col, Row } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 
+import "./Position.css";
 
 export const CurrentGeoLocation = () => {
   const [latitude, setLatitude] = useState();
@@ -35,9 +36,11 @@ export const CurrentGeoLocation = () => {
   }
 
   return (
-    <Row className="justify-content-md-top">
-      <Col>{latitude}</Col>
-      <Col>{longitude}</Col>
+    <Row>
+      <Col>
+        <div>Latitude: {latitude}</div>
+        <div>Longitude: {longitude}</div>
+      </Col>
     </Row>
   );
 };
