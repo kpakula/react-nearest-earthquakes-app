@@ -6,20 +6,12 @@ import { CurrentGeoLocation } from "./components/Position/CurrentGeoLocation";
 
 function App() {
   return (
-
     <Container fluid={true} className="App">
+      <CurrentGeoLocation />
       <Row>
-        <Col>
-          <CurrentGeoLocation/>
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-        
-        </Col>
+        <Col></Col>
       </Row>
     </Container>
-
   );
 }
 
