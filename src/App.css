@@ -1,4 +1,6 @@
 .App {
   text-align: center; 
   font-family: 'Roboto', sans-serif;
+  height: 100vh;
+  background-color: rgb(42, 101, 228);
 }

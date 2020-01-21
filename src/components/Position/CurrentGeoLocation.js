@@ -38,8 +38,8 @@ export const CurrentGeoLocation = () => {
   return (
     <Row>
       <Col>
-        <div>Latitude: {latitude}</div>
-        <div>Longitude: {longitude}</div>
+        <div><h2>Latitude: {latitude}</h2></div>
+        <div><h2>Longitude: {longitude}</h2></div>
       </Col>
     </Row>
   );
