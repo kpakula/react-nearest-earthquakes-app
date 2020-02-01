@@ -3,7 +3,7 @@ import { Col, Row } from "react-bootstrap";
 
 // import "./Position.css";
 
-export const CurrentGeoLocation = () => {
+export const CurrentGeoLocation = (props) => {
   const [latitude, setLatitude] = useState();
   const [longitude, setLongitude] = useState();
 
@@ -12,10 +12,13 @@ export const CurrentGeoLocation = () => {
       navigator.geolocation.getCurrentPosition(success, error);
     } else {
       const coords = JSON.parse(localStorage.getItem("coordinates"));
-      setLatitude(coords.longitude);
-      setLongitude(coords.latitude);
+      setLatitude(coords.latitude);
+      setLongitude(coords.longitude);
+      handleUpdateCurrentLocation(coords.latitude, coords.longitude);
     }
   }, []);
+
+  const handleUpdateCurrentLocation = props.handleUpdateCurrentLocation;
 
   function success(position) {
     const crd = position.coords;
@@ -27,6 +30,7 @@ export const CurrentGeoLocation = () => {
     };
     setLatitude(coordinate.latitude);
     setLongitude(coordinate.longitude);
+    handleUpdateCurrentLocation(coordinate.latitude, coordinate.longitude);
 
     localStorage.setItem("coordinates", JSON.stringify(coordinate));
   }
@@ -38,6 +42,7 @@ export const CurrentGeoLocation = () => {
   return (
     <Row>
       <Col>
+
         <div><h2>Latitude: {latitude}</h2></div>
         <div><h2>Longitude: {longitude}</h2></div>
       </Col>
