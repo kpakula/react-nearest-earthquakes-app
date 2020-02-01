@@ -5,8 +5,7 @@ import "./Map.css";
 export class MapView extends React.Component {
   componentDidMount() {
     this.map = L.map("map", {
-      center: [49.8419, 24.0315],
-      zoom: 2,
+      zoom: 5,
       layers: [
         L.tileLayer(
           "https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=bm3pLwuFHdjGvaCardpP",
@@ -37,6 +36,8 @@ export class MapView extends React.Component {
           title: marker.title
         }).addTo(this.layer);
       });
+
+      this.map.panTo(new L.LatLng(markers[0].latitude, markers[0].longitude), 5)
     }
   }
 
