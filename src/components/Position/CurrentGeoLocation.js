@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Col, Row } from "react-bootstrap";
 
-import "./Position.css";
+// import "./Position.css";
 
 export const CurrentGeoLocation = () => {
   const [latitude, setLatitude] = useState();
