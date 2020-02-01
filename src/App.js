@@ -9,25 +9,14 @@ import { MapView } from "./components/Map/Map";
 class App extends Component {
   constructor(props) {
     super(props);
-    this.marker = [
-      { lat: "42.51", long: "32.2" },
-      { lat: "23.51", long: "52.2" },
-      { lat: "15.51", long: "23.25" }
-    ];
+
+    this.state = {
+      marker: []
+    };
   }
 
-  state = {
-    latitude: '',
-    longitude: '',
-    marker: [
-      { lat: "42.51", long: "32.2" },
-      { lat: "23.51", long: "52.2" },
-      { lat: "15.51", long: "23.25" }
-    ]
-  };
-
   handleUpdateCurrentLocation(lat, long) {
-    this.setState({ latitude: lat, longitude: long});
+    this.setState({ marker: [{ latitude: lat, longitude: long }] });
   }
 
   render() {
@@ -45,14 +34,16 @@ class App extends Component {
 
         <Row>
           <Col className="align-self-center">
-            <MapView markers={this.marker} />
+            <MapView markers={this.state.marker} />
           </Col>
         </Row>
 
         <Row>
           <Col>
-            <h3>{this.state.latitude}</h3>
-            <h3>{this.state.longitude}</h3>
+            {/* <h3>{this.state.latitude}</h3>
+            <h3>{this.state.longitude}</h3> */}
+            <h3>{this.state.marker["latitude"]}</h3>
+            <h3>{this.state.marker["longitude"]}</h3>
           </Col>
         </Row>
       </Container>

@@ -3,7 +3,6 @@ import L from "leaflet";
 
 import "./Map.css";
 export class MapView extends React.Component {
-
   componentDidMount() {
     this.map = L.map("map", {
       center: [49.8419, 24.0315],
@@ -19,27 +18,26 @@ export class MapView extends React.Component {
       ]
     });
 
-    // this.marker = L.marker([50.5, 30.5]).addTo(this.map)
     this.layer = L.layerGroup().addTo(this.map);
-    this.updateMarkers(this.props.markers)
+    this.updateMarkers(this.props.markers);
   }
 
-
-  componentDidUpdate( {markers} )  {
-      if (this.props.markers !== markers) {
-          this.updateMarkers(this.props.markers)
-      }
+  componentDidUpdate({ markers }) {
+    if (this.props.markers !== markers) {
+      this.updateMarkers(this.props.markers);
+    }
   }
 
   updateMarkers(markers) {
-    console.log(markers)
-    
     this.layer.clearLayers();
-    markers.forEach(marker => {
-        L.marker(
-            [marker.lat, marker.long], { title: marker.title }
-        ).addTo(this.layer);
-    });
+
+    if (markers.length != 0) {
+      markers.forEach(marker => {
+        L.marker([marker.latitude, marker.longitude], {
+          title: marker.title
+        }).addTo(this.layer);
+      });
+    }
   }
 
   render() {
