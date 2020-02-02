@@ -33,7 +33,7 @@ export class MapView extends React.Component {
     if (markers.length !== 0) {
       markers.forEach(marker => {
         L.marker([marker.latitude, marker.longitude], {
-          title: marker.title
+          title: "Your location"
         }).addTo(this.layer);
       });
 
