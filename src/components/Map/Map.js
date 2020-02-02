@@ -30,7 +30,7 @@ export class MapView extends React.Component {
   updateMarkers(markers) {
     this.layer.clearLayers();
 
-    if (markers.length != 0) {
+    if (markers.length !== 0) {
       markers.forEach(marker => {
         L.marker([marker.latitude, marker.longitude], {
           title: marker.title

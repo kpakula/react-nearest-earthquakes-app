@@ -20,31 +20,33 @@ class App extends Component {
   }
 
   render() {
+    const isCorrect = this.state.marker[0];
+    let latitude;
+    let longitude;
+
+    if (isCorrect !== undefined) {
+      console.log(isCorrect["latitude"]);
+      console.log(isCorrect["longitude"]);
+      latitude = isCorrect["latitude"];
+      longitude = isCorrect["longitude"];
+    }
+
     return (
       <Container fluid={true} className="App">
-        <Row>
-          <Col>
-            <CurrentGeoLocation
-              handleUpdateCurrentLocation={this.handleUpdateCurrentLocation.bind(
-                this
-              )}
-            />
-          </Col>
-        </Row>
+        <CurrentGeoLocation
+          handleUpdateCurrentLocation={this.handleUpdateCurrentLocation.bind(
+            this
+          )}
+        ></CurrentGeoLocation>
 
         <Row>
           <Col className="align-self-center">
             <MapView markers={this.state.marker} />
           </Col>
         </Row>
-
         <Row>
-          <Col>
-            {/* <h3>{this.state.latitude}</h3>
-            <h3>{this.state.longitude}</h3> */}
-            <h3>{this.state.marker["latitude"]}</h3>
-            <h3>{this.state.marker["longitude"]}</h3>
-          </Col>
+          <Col>{latitude}</Col>
+          <Col>{longitude}</Col>
         </Row>
       </Container>
     );
