@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Container, Col, Row } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import { CurrentGeoLocation } from "./components/Position/CurrentGeoLocation";
-import { MapView } from "./components/Map/MapView";
 import Coordinates from "./components/Info/Coordinates";
 import MapAdapter from "./components/Map/MapAdapter";
+import HandleKeyPressed from "./components/Handlers/handleKeyPressed";
 
 class App extends Component {
   constructor(props) {
@@ -21,6 +21,7 @@ class App extends Component {
     this.setState({ marker: [{ latitude: lat, longitude: long }] });
   }
 
+  // Handle press space bar key 
   handlePress = event => {
     if (event.key === " ") {
       const newValue = this.state.clicked + 1;
@@ -44,11 +45,11 @@ class App extends Component {
     }
 
     const spacePress = this.state.clicked;
-    let constInformation;
+    let handlerInformation;
     if (spacePress > 0) {
-      constInformation = <p className="big">Pressed {spacePress} times.</p>;
+      handlerInformation = <p className="big">Pressed {spacePress} times.</p>;
     } else {
-      constInformation = <p className="big">Press space...</p>;
+      handlerInformation = <p className="big">Press space...</p>;
     }
 
     return (
@@ -59,21 +60,11 @@ class App extends Component {
           )}
         ></CurrentGeoLocation>
 
-{/* 
-        <Row className="mt-4">
-          <Col className="align-self-center">
-            <MapView markers={this.state.marker} />
-          </Col>
-        </Row> */}
-
         <MapAdapter markers={this.state.marker}/>
-
 
         <Coordinates latitude={latitude} longitude={longitude}/>
 
-        <Row>
-          <Col>{constInformation}</Col>
-        </Row>
+        <HandleKeyPressed handlerInformation={handlerInformation}/>
 
 
       </Container>
