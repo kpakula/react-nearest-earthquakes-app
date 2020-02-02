@@ -11,12 +11,25 @@ class App extends Component {
     super(props);
 
     this.state = {
-      marker: []
+      marker: [],
+      clicked: 0
     };
   }
 
   handleUpdateCurrentLocation(lat, long) {
     this.setState({ marker: [{ latitude: lat, longitude: long }] });
+  }
+
+  handlePress = event => {
+    if (event.key === " ") {
+      const newValue = this.state.clicked + 1;
+      this.setState({ clicked: newValue });
+      console.log("Space  press here");
+    }
+  };
+
+  componentDidMount() {
+    document.addEventListener("keydown", this.handlePress, false);
   }
 
   render() {
@@ -25,10 +38,16 @@ class App extends Component {
     let longitude;
 
     if (isCorrect !== undefined) {
-      console.log(isCorrect["latitude"]);
-      console.log(isCorrect["longitude"]);
       latitude = isCorrect["latitude"];
       longitude = isCorrect["longitude"];
+    }
+
+    const spacePress = this.state.clicked;
+    let constInformation;
+    if (spacePress > 0) {
+      constInformation = <p className="big">Pressed {spacePress} times.</p>;
+    } else {
+      constInformation = <p className="big">Press space...</p>;
     }
 
     return (
@@ -39,14 +58,23 @@ class App extends Component {
           )}
         ></CurrentGeoLocation>
 
-        <Row>
+        <Row className="mt-4">
           <Col className="align-self-center">
             <MapView markers={this.state.marker} />
           </Col>
         </Row>
+
+        <Row className="mt-3">
+          <Col>
+            <h3>{latitude}</h3>
+          </Col>
+          <Col>
+            <h3>{longitude}</h3>
+          </Col>
+        </Row>
+
         <Row>
-          <Col>{latitude}</Col>
-          <Col>{longitude}</Col>
+  <Col>{constInformation}</Col>
         </Row>
       </Container>
     );

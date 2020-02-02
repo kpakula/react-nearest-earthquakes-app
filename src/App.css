@@ -1,6 +1,25 @@
+/* html, body, #app, #app>div {
+  height: 100%;
+    background-color: rgb(42, 101, 228);
+} */
 .App {
   text-align: center; 
   font-family: 'Roboto', sans-serif;
-  height: 100vh;
   background-color: rgb(42, 101, 228);
+  color: #caeaca;
+  min-height: 100vh;
+}
+
+
+h3 {
+  text-decoration: underline;
+}
+
+.big {
+  font-size: xx-large;
+}
+
+.cont {
+  outline: 1px solid black;
+  height: 50%;
 }
