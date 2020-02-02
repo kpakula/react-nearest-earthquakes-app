@@ -1,7 +1,7 @@
 import React from "react";
 import L from "leaflet";
 
-import "./Map.css";
+import "./MapView.css";
 export class MapView extends React.Component {
   componentDidMount() {
     this.map = L.map("map", {
@@ -37,7 +37,10 @@ export class MapView extends React.Component {
         }).addTo(this.layer);
       });
 
-      this.map.panTo(new L.LatLng(markers[0].latitude, markers[0].longitude), 5)
+      this.map.panTo(
+        new L.LatLng(markers[0].latitude, markers[0].longitude),
+        5
+      );
     }
   }
 

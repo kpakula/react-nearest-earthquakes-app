@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-// import { Container } from "react-bootstrap";
 import { Container, Col, Row } from "react-bootstrap";
 import { CurrentGeoLocation } from "./components/Position/CurrentGeoLocation";
-import { MapView } from "./components/Map/Map";
+import { MapView } from "./components/Map/MapView";
 import Coordinates from "./components/Info/Coordinates";
+import MapAdapter from "./components/Map/MapAdapter";
 
 class App extends Component {
   constructor(props) {
@@ -59,11 +59,14 @@ class App extends Component {
           )}
         ></CurrentGeoLocation>
 
+{/* 
         <Row className="mt-4">
           <Col className="align-self-center">
             <MapView markers={this.state.marker} />
           </Col>
-        </Row>
+        </Row> */}
+
+        <MapAdapter markers={this.state.marker}/>
 
 
         <Coordinates latitude={latitude} longitude={longitude}/>
@@ -71,6 +74,8 @@ class App extends Component {
         <Row>
           <Col>{constInformation}</Col>
         </Row>
+
+
       </Container>
     );
   }
