@@ -5,6 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Col, Row } from "react-bootstrap";
 import { CurrentGeoLocation } from "./components/Position/CurrentGeoLocation";
 import { MapView } from "./components/Map/Map";
+import Coordinates from "./components/Info/Coordinates";
 
 class App extends Component {
   constructor(props) {
@@ -64,17 +65,11 @@ class App extends Component {
           </Col>
         </Row>
 
-        <Row className="mt-3">
-          <Col>
-            <h3>{latitude}</h3>
-          </Col>
-          <Col>
-            <h3>{longitude}</h3>
-          </Col>
-        </Row>
+
+        <Coordinates latitude={latitude} longitude={longitude}/>
 
         <Row>
-  <Col>{constInformation}</Col>
+          <Col>{constInformation}</Col>
         </Row>
       </Container>
     );
