@@ -5,14 +5,14 @@ import { Container } from "react-bootstrap";
 import { CurrentGeoLocation } from "./components/Position/CurrentGeoLocation";
 import Coordinates from "./components/Info/Coordinates";
 import MapAdapter from "./components/Map/MapAdapter";
-import HandleKeyPressed from "./components/Handlers/handleKeyPressed";
+import axios from "axios";
 
 class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      marker: [],
+      marker: []
     };
   }
 
@@ -20,10 +20,21 @@ class App extends Component {
     this.setState({ marker: [{ latitude: lat, longitude: long }] });
   }
 
+  request = () => {
+    axios
+      .get("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson")
+      .then((response) => {
+        console.log(response.data.features);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  };
+
   // Handle press space bar key
   handlePress = event => {
     if (event.key === " ") {
-      // console.log("Space  press here");
+      this.request();
     }
   };
 
@@ -41,7 +52,6 @@ class App extends Component {
       longitude = isCorrect["longitude"];
     }
 
-
     return (
       <Container fluid={true} className="App">
         <CurrentGeoLocation
@@ -50,10 +60,9 @@ class App extends Component {
           )}
         ></CurrentGeoLocation>
 
-        <MapAdapter markers={this.state.marker}/>
+        <MapAdapter markers={this.state.marker} />
 
-        <Coordinates latitude={latitude} longitude={longitude}/>
-
+        <Coordinates latitude={latitude} longitude={longitude} />
       </Container>
     );
   }
