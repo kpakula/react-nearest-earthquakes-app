@@ -23,3 +23,16 @@ h3 {
   outline: 1px solid black;
   height: 50%;
 }
+
+.getBtn {
+  margin-top: 5rem;
+}
+
+.loading {
+  margin-top: 25px;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
