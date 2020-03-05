@@ -13,7 +13,6 @@ class App extends Component {
 
     this.state = {
       marker: [],
-      clicked: 0
     };
   }
 
@@ -21,12 +20,10 @@ class App extends Component {
     this.setState({ marker: [{ latitude: lat, longitude: long }] });
   }
 
-  // Handle press space bar key 
+  // Handle press space bar key
   handlePress = event => {
     if (event.key === " ") {
-      const newValue = this.state.clicked + 1;
-      this.setState({ clicked: newValue });
-      console.log("Space  press here");
+      // console.log("Space  press here");
     }
   };
 
@@ -44,13 +41,6 @@ class App extends Component {
       longitude = isCorrect["longitude"];
     }
 
-    const spacePress = this.state.clicked;
-    let handlerInformation;
-    if (spacePress > 0) {
-      handlerInformation = <p className="big">Pressed {spacePress} times.</p>;
-    } else {
-      handlerInformation = <p className="big">Press space...</p>;
-    }
 
     return (
       <Container fluid={true} className="App">
@@ -63,9 +53,6 @@ class App extends Component {
         <MapAdapter markers={this.state.marker}/>
 
         <Coordinates latitude={latitude} longitude={longitude}/>
-
-        <HandleKeyPressed handlerInformation={handlerInformation}/>
-
 
       </Container>
     );
