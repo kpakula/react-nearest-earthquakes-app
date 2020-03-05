@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container } from "react-bootstrap";
@@ -7,20 +7,26 @@ import Coordinates from "./components/Info/Coordinates";
 import MapAdapter from "./components/Map/MapAdapter";
 import axios from "axios";
 
-class App extends Component {
-  constructor(props) {
-    super(props);
 
-    this.state = {
-      marker: []
-    };
+function App() {
+  const [marker, setMarker] = useState([]);
+  const [currentLatitude, setCurrentLatitude] = useState(null);
+  const [currentLongitude, setCurrentLongitude] = useState(null);
+
+  const handleUpdateCurrentLocation = (lat, long) => {
+    setMarker([{latitude: lat, longitude: long}])
+    setCurrentLatitude(lat);
+    setCurrentLongitude(long)
+
+
+    const isCorrect = marker[0];
+    if (isCorrect !== undefined) {
+      setCurrentLatitude(isCorrect["latitude"])
+      setCurrentLongitude(isCorrect["longitude"])
+    }
   }
 
-  handleUpdateCurrentLocation(lat, long) {
-    this.setState({ marker: [{ latitude: lat, longitude: long }] });
-  }
-
-  request = () => {
+  const request = () => {
     axios
       .get("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson")
       .then((response) => {
@@ -31,41 +37,17 @@ class App extends Component {
       })
   };
 
-  // Handle press space bar key
-  handlePress = event => {
-    if (event.key === " ") {
-      this.request();
-    }
-  };
+  return (
+    <Container fluid={true} className="App">
+    <CurrentGeoLocation
+      handleUpdateCurrentLocation={handleUpdateCurrentLocation}
+    ></CurrentGeoLocation>
 
-  componentDidMount() {
-    document.addEventListener("keydown", this.handlePress, false);
-  }
+    <MapAdapter markers={marker} />
 
-  render() {
-    const isCorrect = this.state.marker[0];
-    let latitude;
-    let longitude;
-
-    if (isCorrect !== undefined) {
-      latitude = isCorrect["latitude"];
-      longitude = isCorrect["longitude"];
-    }
-
-    return (
-      <Container fluid={true} className="App">
-        <CurrentGeoLocation
-          handleUpdateCurrentLocation={this.handleUpdateCurrentLocation.bind(
-            this
-          )}
-        ></CurrentGeoLocation>
-
-        <MapAdapter markers={this.state.marker} />
-
-        <Coordinates latitude={latitude} longitude={longitude} />
-      </Container>
-    );
-  }
+    <Coordinates latitude={currentLatitude} longitude={currentLongitude} />
+  </Container>
+  )
 }
 
 export default App;
