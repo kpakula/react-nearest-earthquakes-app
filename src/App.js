@@ -7,6 +7,8 @@ import Coordinates from "./components/Info/Coordinates";
 import MapAdapter from "./components/Map/MapAdapter";
 import axios from "axios";
 import ReactLoading from "react-loading";
+import Haversine from "./utils/Haversine";
+import Earthquake from "./utils/Earthquake";
 
 function App() {
   const [marker, setMarker] = useState([]);
@@ -35,7 +37,13 @@ function App() {
       const response = await axios.get(
         "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson"
       );
-      console.log(response.data.features)
+
+      let allEarthquakes = mapEarthquakes(response);
+
+      console.log(allEarthquakes)
+
+
+
     } catch (error) {
       console.error(error);
     } finally {
@@ -43,7 +51,23 @@ function App() {
     }
   };
 
-  
+  const mapEarthquakes = (response) => {
+    let earthquakes = [];
+    const length = response.data.features.length;
+
+    for (let i = 0; i < length; i++) {
+      const earthquakeTitle = response.data.features[i].properties.title;
+      const earthquakeLongitude = response.data.features[i].geometry.coordinates[0];
+      const earthquakeLatitude = response.data.features[i].geometry.coordinates[1];
+      const kilometers = Haversine.calculateDistance(currentLatitude, currentLongitude, earthquakeLatitude, earthquakeLongitude);
+      let earthquake = new Earthquake(earthquakeTitle, earthquakeLongitude, earthquakeLatitude, kilometers)
+      earthquakes.push(earthquake);
+    }
+
+    return earthquakes;
+  }
+
+
   return (
     <Container fluid={true} className="App">
       <CurrentGeoLocation

@@ -28,4 +28,4 @@ class Haversine {
     }
 }
 
-Haversine.calculateDistance(20, 3, 19, 28)
+export default Haversine;
