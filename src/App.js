@@ -95,7 +95,7 @@ function App() {
       <div className="row">
         <div className="col">
           <div className="getBtn">
-          <button type="button" class="btn btn-secondary btn-lg" onClick={request}>Check earthquakes</button>
+          <button type="button" className="btn btn-secondary btn-lg" onClick={request}>Check earthquakes</button>
           </div>
         </div>
       </div>
@@ -103,8 +103,7 @@ function App() {
       <div className="row">
         <div className="col">
           <div className="loading">
-            {/* {isResponse && <ReactLoading type="bars"/>} */}
-            <ReactLoading type="bars"/>
+            {isResponse && <ReactLoading type="bars"/>}
           </div>
         </div>
       </div>
