@@ -3,6 +3,7 @@
     opacity: 90%;
     border-radius: 10px;
     margin-top: 2em;
+
 }
 
 .earthquake h3{
@@ -10,11 +11,21 @@
 }
 
 .earthquake {
+    /* background-color: rgb(42, 101, 258); */
     font-size: 17px;
     margin-top: 15px;
     padding: 5px;
+    /* width: 50%; */
+
 }
 
 .earthquake p {
     display: inline;
+    margin: 10px;
+    
+}
+
+.earthquake p:first-child {
+    font-size: 25px;
+    color: aliceblue;
 }

@@ -36,9 +36,9 @@ function App() {
         return a.kilometers - b.kilometers
       })
 
-      const topTenEarthquakes = allEarthquakes.slice(0, 10)
+      const topFiveEarthquakes = allEarthquakes.slice(0, 5)
 
-      setTopEarthquakes(topTenEarthquakes);
+      setTopEarthquakes(topFiveEarthquakes);
 
     } catch (error) {
       console.error(error);
@@ -71,7 +71,7 @@ function App() {
       const earthquakeTitle = response.data.features[i].properties.title;
       const earthquakeLongitude = response.data.features[i].geometry.coordinates[0];
       const earthquakeLatitude = response.data.features[i].geometry.coordinates[1];
-      const kilometers = Haversine.calculateDistance(currentLatitude, currentLongitude, earthquakeLatitude, earthquakeLongitude);
+      const kilometers = Math.round(Haversine.calculateDistance(currentLatitude, currentLongitude, earthquakeLatitude, earthquakeLongitude));
       let earthquake = new Earthquake(earthquakeTitle, earthquakeLongitude, earthquakeLatitude, kilometers)
       earthquakes.push(earthquake);
     }
