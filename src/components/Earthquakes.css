@@ -32,6 +32,12 @@ margin: auto;
     color: aliceblue;
 }
 
+.earthquake:hover {
+    background-color: rgb(48, 113, 252);
+    cursor: pointer;
+    border-radius: 15px;
+}
+
 /* 
 
  */
