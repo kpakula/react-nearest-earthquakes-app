@@ -11,8 +11,9 @@ import Haversine from "./utils/Haversine";
 import Earthquake from "./utils/Earthquake";
 import Earthquakes from "./components/Earthquakes";
 
+
 function App() {
-  const [marker, setMarker] = useState([]);
+  const [markers, setMarkers] = useState([]);
   const [currentLatitude, setCurrentLatitude] = useState(null);
   const [currentLongitude, setCurrentLongitude] = useState(null);
   const [isResponse, setResponse] = useState(undefined);
@@ -43,11 +44,11 @@ function App() {
   };
 
   const handleUpdateCurrentLocation = (lat, long) => {
-    setMarker([{ latitude: lat, longitude: long }]);
+    setMarkers([{ latitude: lat, longitude: long }]);
     setCurrentLatitude(lat);
     setCurrentLongitude(long);
 
-    const isCorrect = marker[0];
+    const isCorrect = markers[0];
     if (isCorrect !== undefined) {
       setCurrentLatitude(isCorrect["latitude"]);
       setCurrentLongitude(isCorrect["longitude"]);
@@ -64,6 +65,8 @@ function App() {
         response.data.features[i].geometry.coordinates[0];
       const earthquakeLatitude =
         response.data.features[i].geometry.coordinates[1];
+      const date = response.data.features[i].properties.time;
+
       const kilometers = Math.round(
         Haversine.calculateDistance(
           currentLatitude,
@@ -72,12 +75,14 @@ function App() {
           earthquakeLongitude
         )
       );
-      let earthquake = new Earthquake(
+      const earthquake = new Earthquake(
         earthquakeTitle,
         earthquakeLongitude,
         earthquakeLatitude,
-        kilometers
+        kilometers,
+        date
       );
+
       earthquakes.push(earthquake);
     }
 
@@ -92,7 +97,7 @@ function App() {
 
       <div className="row mt-5 current">
         <div className="col">
-          <MapAdapter markers={marker} />
+          <MapAdapter markers={markers} />
         </div>
 
         <div className="col-6">
