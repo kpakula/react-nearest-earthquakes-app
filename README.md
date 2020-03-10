@@ -7,3 +7,12 @@ It is an application that takes the current location (coordinates). It uses eart
 ```bash
 # You have to enable Location Service in your browser when it ask.
 ```
+
+## How to run
+```bash
+# Install essentials dependencies
+npm install
+
+# Start application
+npm start
+```
