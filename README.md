@@ -19,3 +19,7 @@ npm start
 
 ## Used API
 https://earthquake.usgs.gov/earthquakes/feed/v1.0/
+
+## Used technologies
+* React.js
+* Bootstrap
