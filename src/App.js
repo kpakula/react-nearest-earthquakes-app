@@ -101,6 +101,14 @@ function App() {
 
     updatedEarthquakes[id].clicked = true
 
+    console.log(updatedEarthquakes[id].latitude, updatedEarthquakes[id].longitude, markers)
+    
+    setMarkers([...markers, {
+      latitude: updatedEarthquakes[id].latitude,
+      longitude: updatedEarthquakes[id].longitude
+    }])
+    console.log(markers)
+
     setTopEarthquakes(updatedEarthquakes);
   };
 
