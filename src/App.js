@@ -125,11 +125,11 @@ function App() {
       ></CurrentGeoLocation>
 
       <div className="row current">
-        <div className="col p-0">
+        <div className="col-12 col-lg-8 p-0 current-column">
           <MapAdapter markers={markers} />
         </div>
 
-        <div className="col-12 col-lg-6">
+        <div className="col">
           <div className="container inner">
             <Coordinates
               latitude={currentLatitude}
