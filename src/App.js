@@ -18,7 +18,6 @@ function App() {
   const [currentLongitude, setCurrentLongitude] = useState(null);
   const [isResponse, setResponse] = useState(undefined);
   const [topEarthquakes, setTopEarthquakes] = useState([]);
-  const [pickedEarthquake, setPickedEarthquake] = useState(null);
 
   const request = async () => {
     setResponse(true);
@@ -101,13 +100,23 @@ function App() {
 
     updatedEarthquakes[id].clicked = true
 
-    console.log(updatedEarthquakes[id].latitude, updatedEarthquakes[id].longitude, markers)
+
+
+
+
+    if (markers.length === 1) {
+      setMarkers([...markers, {
+        latitude: updatedEarthquakes[id].latitude,
+        longitude: updatedEarthquakes[id].longitude
+      }])
+    } else {
+      const updateMarkers = [...markers]
+      updateMarkers[1].latitude = updatedEarthquakes[id].latitude;
+      updateMarkers[1].longitude = updatedEarthquakes[id].longitude;
+      setMarkers(updateMarkers);
+    }
     
-    setMarkers([...markers, {
-      latitude: updatedEarthquakes[id].latitude,
-      longitude: updatedEarthquakes[id].longitude
-    }])
-    console.log(markers)
+
 
     setTopEarthquakes(updatedEarthquakes);
   };
