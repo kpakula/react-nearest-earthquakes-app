@@ -10,7 +10,7 @@ import ReactLoading from "react-loading";
 import Haversine from "./utils/Haversine";
 import Earthquake from "./utils/Earthquake";
 import Earthquakes from "./components/Earthquakes";
-
+import EARTHQUAKE_API from './utils/Api'
 
 function App() {
   const [markers, setMarkers] = useState([]);
@@ -24,7 +24,7 @@ function App() {
     setTopEarthquakes([]);
     try {
       const response = await axios.get(
-        "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson"
+        EARTHQUAKE_API
       );
 
       let allEarthquakes = mapEarthquakes(response);
@@ -133,7 +133,6 @@ function App() {
           </div>
         </div>
       </div>
-
     </Container>
   );
 }
