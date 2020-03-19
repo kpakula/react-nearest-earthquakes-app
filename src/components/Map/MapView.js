@@ -5,6 +5,7 @@ import { MAP_LAYER, MAP_CREDENTIALS } from "../../utils/Api";
 import "./MapView.css";
 export class MapView extends React.Component {
   componentDidMount() {
+    this.polyline = null;
     this.map = L.map("map", {
       zoom: 5,
       layers: [
@@ -47,7 +48,14 @@ export class MapView extends React.Component {
         ];
         console.log(this.map)
 
+        if (this.polyline !== null ) {
+          this.polyline.remove()
+        }
+
         var polyline = L.polyline(latlngs, { color: "red" }).addTo(this.map);
+        this.polyline = polyline;
+
+        console.log(this.polyline)
         this.map.fitBounds(polyline.getBounds());
       }
     }
