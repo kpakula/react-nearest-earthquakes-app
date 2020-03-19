@@ -129,7 +129,7 @@ function App() {
           <MapAdapter markers={markers} />
         </div>
 
-        <div className="col-6">
+        <div className="col-12 col-lg-6">
           <div className="container inner">
             <Coordinates
               latitude={currentLatitude}
