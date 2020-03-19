@@ -1,13 +1,12 @@
-/* html, body, #app, #app>div {
+html, body, #root {
   height: 100%;
-    background-color: rgb(42, 101, 228);
-} */
+}
 .App {
   text-align: center;
   font-family: 'Roboto', sans-serif;
   background-color: rgb(42, 101, 228);
   color: #caeaca;
-  padding: 0;
+  height: 100%;
 }
 
 
@@ -38,10 +37,11 @@ h3 {
 }
 
 .current {
- height: 100vh;
+  height: 100%;
+ /* height: 100vh; */
 }
 
-.inner {
+/* .inner {
   width: 100%;
   height: 100%;
-}
+} */
