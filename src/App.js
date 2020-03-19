@@ -152,7 +152,7 @@ function App() {
                 </div>
               </div>
             </div>
-            <div className="row h-50">
+            <div className="row m-auto">
               <div className="col">
                 {topEarthquakes.length > 0 && (
                   <Earthquakes

@@ -1,10 +1,11 @@
 html, body, #root {
   height: 100%;
+  width: 100%;
+  background-color: rgb(42, 101, 228);
 }
 .App {
   text-align: center;
   font-family: 'Roboto', sans-serif;
-  background-color: rgb(42, 101, 228);
   color: #caeaca;
   height: 100%;
 }
@@ -45,3 +46,11 @@ h3 {
     height: 60%;
   }
 }
+
+@media only screen and (max-width: 767.98px) {
+  .current-column {
+    height: 50%;
+  }
+}
+
+
