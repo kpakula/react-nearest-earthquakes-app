@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { Col, Row } from "react-bootstrap";
 
-export const CurrentGeoLocation = props => {
+export default function CurrentGeoLocation({ handleUpdateCurrentLocation }) {
+  
   useEffect(() => {
     if (navigator.geolocation && !localStorage.getItem("coordinates")) {
       navigator.geolocation.getCurrentPosition(success, error);
@@ -10,9 +11,9 @@ export const CurrentGeoLocation = props => {
 
       handleUpdateCurrentLocation(coords.latitude, coords.longitude);
     }
+    // eslint-disable-next-line
   }, []);
 
-  const handleUpdateCurrentLocation = props.handleUpdateCurrentLocation;
 
   function success(position) {
     const crd = position.coords;
@@ -37,4 +38,4 @@ export const CurrentGeoLocation = props => {
       <Col></Col>
     </Row>
   );
-};
+}

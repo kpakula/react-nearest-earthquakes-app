@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container } from "react-bootstrap";
-import { CurrentGeoLocation } from "./components/Position/CurrentGeoLocation";
+import CurrentGeoLocation  from "./components/Position/CurrentGeoLocation";
 import Coordinates from "./components/Info/Coordinates";
 import MapAdapter from "./components/Map/MapAdapter";
 import axios from "axios";
