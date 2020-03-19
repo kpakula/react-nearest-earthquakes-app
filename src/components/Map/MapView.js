@@ -38,6 +38,18 @@ export class MapView extends React.Component {
         new L.LatLng(markers[0].latitude, markers[0].longitude),
         5
       );
+
+      if (markers.length === 2) {
+        console.log(markers);
+        const latlngs = [
+          [markers[0].latitude, markers[0].longitude],
+          [markers[1].latitude, markers[1].longitude]
+        ];
+        console.log(this.map)
+
+        var polyline = L.polyline(latlngs, { color: "red" }).addTo(this.map);
+        this.map.fitBounds(polyline.getBounds());
+      }
     }
   }
 
