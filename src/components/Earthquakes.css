@@ -1,9 +1,8 @@
 .earthquakes {
-    /* background-color: rgb(40, 141, 278); */
-width: 100%;
-height: 100%;
-padding: 0;
-margin: auto;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: auto;
 
 }
 
@@ -11,7 +10,6 @@ margin: auto;
     font-size: 17px;
     margin-top: 15px;
     padding: 5px;
-
 }
 
 .earthquake {
@@ -24,7 +22,7 @@ margin: auto;
 .earthquake p {
     display: inline;
     margin: 10px;
-    
+
 }
 
 .earthquake p:first-child {
@@ -43,7 +41,3 @@ margin: auto;
     cursor: pointer;
     border-radius: 15px;
 }
-
-/* 
-
- */
