@@ -5,6 +5,7 @@ class Earthquake {
         this.latitude = latitude;
         this.kilometers = kilometers;
         this.date = date;
+        this.clicked = false;
     }
 }
 

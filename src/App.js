@@ -10,7 +10,7 @@ import ReactLoading from "react-loading";
 import Haversine from "./utils/Haversine";
 import Earthquake from "./utils/Earthquake";
 import Earthquakes from "./components/Earthquakes";
-import EARTHQUAKE_API from './utils/Api'
+import EARTHQUAKE_API from "./utils/Api";
 
 function App() {
   const [markers, setMarkers] = useState([]);
@@ -18,14 +18,13 @@ function App() {
   const [currentLongitude, setCurrentLongitude] = useState(null);
   const [isResponse, setResponse] = useState(undefined);
   const [topEarthquakes, setTopEarthquakes] = useState([]);
+  const [pickedEarthquake, setPickedEarthquake] = useState(null);
 
   const request = async () => {
     setResponse(true);
     setTopEarthquakes([]);
     try {
-      const response = await axios.get(
-        EARTHQUAKE_API
-      );
+      const response = await axios.get(EARTHQUAKE_API);
 
       let allEarthquakes = mapEarthquakes(response);
 
@@ -89,6 +88,22 @@ function App() {
     return earthquakes;
   };
 
+  const handleCurrentPickedEarthquake = event => {
+    const id = event.currentTarget.dataset.id;
+
+    const updatedEarthquakes = [...topEarthquakes];
+
+    updatedEarthquakes.forEach((earthquake, index) => {
+      if (index !== id) {
+        earthquake.clicked = false;
+      } 
+    });
+
+    updatedEarthquakes[id].clicked = true
+
+    setTopEarthquakes(updatedEarthquakes);
+  };
+
   return (
     <Container fluid={true} className="App">
       <CurrentGeoLocation
@@ -126,7 +141,12 @@ function App() {
             <div className="row h-50">
               <div className="col">
                 {topEarthquakes.length > 0 && (
-                  <Earthquakes topEarthquakes={topEarthquakes} />
+                  <Earthquakes
+                    topEarthquakes={topEarthquakes}
+                    handleCurrentPickedEarthquake={
+                      handleCurrentPickedEarthquake
+                    }
+                  />
                 )}
               </div>
             </div>
