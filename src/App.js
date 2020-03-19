@@ -10,7 +10,7 @@ import ReactLoading from "react-loading";
 import Haversine from "./utils/Haversine";
 import Earthquake from "./utils/Earthquake";
 import Earthquakes from "./components/Earthquakes";
-import EARTHQUAKE_API from "./utils/Api";
+import { EARTHQUAKE_API } from "./utils/Api";
 
 function App() {
   const [markers, setMarkers] = useState([]);
@@ -95,28 +95,25 @@ function App() {
     updatedEarthquakes.forEach((earthquake, index) => {
       if (index !== id) {
         earthquake.clicked = false;
-      } 
+      }
     });
 
-    updatedEarthquakes[id].clicked = true
-
-
-
-
+    updatedEarthquakes[id].clicked = true;
 
     if (markers.length === 1) {
-      setMarkers([...markers, {
-        latitude: updatedEarthquakes[id].latitude,
-        longitude: updatedEarthquakes[id].longitude
-      }])
+      setMarkers([
+        ...markers,
+        {
+          latitude: updatedEarthquakes[id].latitude,
+          longitude: updatedEarthquakes[id].longitude
+        }
+      ]);
     } else {
-      const updateMarkers = [...markers]
+      const updateMarkers = [...markers];
       updateMarkers[1].latitude = updatedEarthquakes[id].latitude;
       updateMarkers[1].longitude = updatedEarthquakes[id].longitude;
       setMarkers(updateMarkers);
     }
-    
-
 
     setTopEarthquakes(updatedEarthquakes);
   };

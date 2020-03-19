@@ -1,5 +1,6 @@
 import React from "react";
 import L from "leaflet";
+import { MAP_LAYER, MAP_CREDENTIALS } from "../../utils/Api";
 
 import "./MapView.css";
 export class MapView extends React.Component {
@@ -7,13 +8,9 @@ export class MapView extends React.Component {
     this.map = L.map("map", {
       zoom: 5,
       layers: [
-        L.tileLayer(
-          "https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=bm3pLwuFHdjGvaCardpP",
-          {
-            attribution:
-              '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
-          }
-        )
+        L.tileLayer(MAP_LAYER, {
+          attribution: MAP_CREDENTIALS
+        })
       ]
     });
 
