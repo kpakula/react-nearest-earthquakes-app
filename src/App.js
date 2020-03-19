@@ -124,8 +124,8 @@ function App() {
         handleUpdateCurrentLocation={handleUpdateCurrentLocation}
       ></CurrentGeoLocation>
 
-      <div className="row mt-5 current">
-        <div className="col">
+      <div className="row current">
+        <div className="col p-0">
           <MapAdapter markers={markers} />
         </div>
 
