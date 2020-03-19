@@ -31,7 +31,6 @@ export class MapView extends React.Component {
     this.layer.clearLayers();
 
     if (markers.length !== 0) {
-      console.log(markers)
       markers.forEach(marker => {
         L.marker([marker.latitude, marker.longitude], {
           title: "Your location"

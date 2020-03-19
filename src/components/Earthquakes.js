@@ -3,16 +3,22 @@ import React from "react";
 import "./Earthquakes.css";
 import moment from "moment";
 function Earthquakes({ topEarthquakes, handleCurrentPickedEarthquake }) {
-
   const earthquakes = topEarthquakes.map((earthquake, index) => (
-    <div className="earthquake" key={index} data-id={index} onClick={handleCurrentPickedEarthquake}>
+    <div
+      className={
+        earthquake.clicked ? "earthquake earthquake-clicked" : "earthquake"
+      }
+      key={index}
+      data-id={index}
+      onClick={handleCurrentPickedEarthquake}
+    >
       <p>{index + 1}.</p>
       <p>{earthquake.title} </p>
       <p>Lat: {earthquake.latitude}</p>
       <p>Long: {earthquake.longitude}</p>
       <p>Kilometers: {earthquake.kilometers}</p>
       <p>Date: {moment(earthquake.date).format("YYYY-MM-DD HH:mm:ss")}</p>
-      {earthquake.clicked && <p>Show</p>}
+      {/* {earthquake.clicked && <p>Show</p>} */}
     </div>
   ));
 
