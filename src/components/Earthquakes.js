@@ -17,7 +17,7 @@ function Earthquakes({ topEarthquakes, handleCurrentPickedEarthquake }) {
       <p>Lat: {earthquake.latitude}</p>
       <p>Long: {earthquake.longitude}</p>
       <p>Kilometers: {earthquake.kilometers}</p>
-      <p>Date: {moment(earthquake.date).format("YYYY-MM-DD HH:mm:ss")}</p>
+      <p>Date: {moment(earthquake.date).format("YYYY-MM-DD HH:mm")}</p>
       {/* {earthquake.clicked && <p>Show</p>} */}
     </div>
   ));

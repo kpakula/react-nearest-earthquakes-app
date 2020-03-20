@@ -18,6 +18,7 @@ function App() {
   const [currentLongitude, setCurrentLongitude] = useState(null);
   const [isResponse, setResponse] = useState(undefined);
   const [topEarthquakes, setTopEarthquakes] = useState([]);
+  const [amountOfTopNearestEarthquakes, setAmountOfTopNearestEarthquakes] = useState(25);
 
   const request = async () => {
     setResponse(true);
@@ -31,7 +32,7 @@ function App() {
         return a.kilometers - b.kilometers;
       });
 
-      const topFiveEarthquakes = allEarthquakes.slice(0, 5);
+      const topFiveEarthquakes = allEarthquakes.slice(0, amountOfTopNearestEarthquakes);
 
       setTopEarthquakes(topFiveEarthquakes);
     } catch (error) {
