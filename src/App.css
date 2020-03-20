@@ -1,8 +1,11 @@
-html, body, #root {
+html,
+body,
+#root {
   height: 100%;
   width: 100%;
   background-color: rgb(42, 101, 228);
 }
+
 .App {
   text-align: center;
   font-family: 'Roboto', sans-serif;
@@ -39,7 +42,6 @@ h3 {
 
 .current {
   height: 100%;
-  /* width: 100%; */
 }
 
 @media only screen and (max-width: 991.98px) {
@@ -52,6 +54,13 @@ h3 {
   .current-column {
     height: 50%;
   }
+
+  .getBtn {
+    margin-top: 1rem;
+  }
 }
 
-
+/* .inner {
+  background-color: black;
+  height: 100%;
+} */

@@ -3,6 +3,7 @@ import L from "leaflet";
 import { MAP_LAYER, MAP_CREDENTIALS } from "../../utils/Api";
 
 import "./MapView.css";
+import Haversine from "../../utils/Haversine";
 export class MapView extends React.Component {
   componentDidMount() {
     this.polyline = null;
@@ -30,9 +31,12 @@ export class MapView extends React.Component {
 
     if (markers.length !== 0) {
       markers.forEach(marker => {
-        L.marker([marker.latitude, marker.longitude], {
+        const currentMarker = L.marker([marker.latitude, marker.longitude], {
           title: "Your location"
         }).addTo(this.layer);
+
+        // Popup
+        currentMarker.bindPopup('benc').openPopup();
       });
 
       this.map.panTo(
@@ -41,24 +45,31 @@ export class MapView extends React.Component {
       );
 
       if (markers.length === 2) {
-        console.log(markers);
-        const latlngs = [
-          [markers[0].latitude, markers[0].longitude],
-          [markers[1].latitude, markers[1].longitude]
-        ];
-        console.log(this.map)
+        const latlngs = this.getCurrentLatitudeAndLongitude(markers)
 
-        if (this.polyline !== null ) {
-          this.polyline.remove()
+        if (this.polyline !== null) {
+          this.polyline.remove();
         }
 
+        const distance = Haversine.calculateDistance(
+          markers[0].latitude, markers[0].longitude,
+          markers[1].latitude, markers[1].longitude
+        )
+
         var polyline = L.polyline(latlngs, { color: "red" }).addTo(this.map);
+        polyline.bindPopup("Distance: " + distance.toString()).openPopup()
         this.polyline = polyline;
 
-        console.log(this.polyline)
         this.map.fitBounds(polyline.getBounds());
       }
     }
+  }
+  
+  getCurrentLatitudeAndLongitude = (markers) => {
+    return [
+      [markers[0].latitude, markers[0].longitude],
+      [markers[1].latitude, markers[1].longitude]
+    ]
   }
 
   render() {

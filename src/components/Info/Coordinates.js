@@ -11,11 +11,11 @@ export default function Coordinates(props) {
 
   return (
     <div className="row h-25 align-items-center justify-content-center">
-      <div className="col-6">
+      <div className="col-12">
         <p>{showLatitude}</p>
         <h3>{props.latitude}</h3>
       </div>
-      <div className="col-6">
+      <div className="col-12">
         <p> {showLongitude}</p>
 
         <h3>{props.longitude}</h3>
