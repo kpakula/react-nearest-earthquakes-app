@@ -40,8 +40,11 @@ export class MapView extends React.Component {
           currentMarker.bindPopup('<p>Your location <img src="" height="18px"/></p>').openPopup();
         } else {
           currentMarker.bindPopup(
-            `<p>${marker.title}</p>` + 
-            `<p>${moment(marker.date).format("DD-MM-YYYY HH:mm")}</p>`
+            `<div class='marker-popup'>` +
+            `<p >${marker.title}</p>` + 
+            `<p>${marker.latitude} | ${marker.longitude}</p>` +
+            `<p>${moment(marker.date).format("DD-MM-YYYY HH:mm")}</p>` +
+            `</div>`
             ).openPopup();
         }
       });

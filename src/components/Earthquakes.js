@@ -14,11 +14,6 @@ function Earthquakes({ topEarthquakes, handleCurrentPickedEarthquake }) {
     >
       <p>{index + 1}.</p>
       <p>{earthquake.title} </p>
-      {/* <p>Lat: {earthquake.latitude} Long: {earthquake.longitude}</p> */}
-      <p></p>
-      {/* <p>Kilometers: {earthquake.kilometers}</p> */}
-      {/* <p>Date: {moment(earthquake.date).format("YYYY-MM-DD HH:mm")}</p> */}
-      {/* {earthquake.clicked && <p>Show</p>} */}
     </div>
   ));
 
