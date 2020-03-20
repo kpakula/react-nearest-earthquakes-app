@@ -18,7 +18,6 @@ function App() {
   const [currentLongitude, setCurrentLongitude] = useState(null);
   const [isResponse, setResponse] = useState(undefined);
   const [topEarthquakes, setTopEarthquakes] = useState([]);
-  const [amountOfTopNearestEarthquakes, setAmountOfTopNearestEarthquakes] = useState(5);
 
   const request = async () => {
     setResponse(true);
@@ -32,7 +31,7 @@ function App() {
         return a.kilometers - b.kilometers;
       });
 
-      const topFiveEarthquakes = allEarthquakes.slice(0, amountOfTopNearestEarthquakes);
+      const topFiveEarthquakes = allEarthquakes.slice(0, 5);
 
       setTopEarthquakes(topFiveEarthquakes);
     } catch (error) {
@@ -137,22 +136,22 @@ function App() {
           <MapAdapter markers={markers} />
         </div>
 
-        <div className="col">
-          <div className="container inner">
+        <div className="col-12 col-lg-4 second-column">
+          <div className="container-fluid">
             <Coordinates
               latitude={currentLatitude}
               longitude={currentLongitude}
             />
 
-            <div className="row h-25">
+            <div className="row">
               <div className="col">
                 <div className="getBtn">
                   <button
                     type="button"
-                    className="btn btn-secondary btn-lg"
+                    className="btn btn-secondary btn-lg btn-block"
                     onClick={request}
                   >
-                    Check earthquakes
+                    Check
                   </button>
                 </div>
                 <div className="loading">
@@ -160,7 +159,7 @@ function App() {
                 </div>
               </div>
             </div>
-            <div className="row m-auto">
+            <div className="row">
               <div className="col">
                 {topEarthquakes.length > 0 && (
                   <Earthquakes

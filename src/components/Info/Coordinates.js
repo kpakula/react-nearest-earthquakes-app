@@ -1,5 +1,5 @@
 import React from "react";
-
+import "./Coordinates.css";
 export default function Coordinates(props) {
   let showLatitude;
   let showLongitude;
@@ -10,15 +10,18 @@ export default function Coordinates(props) {
   }
 
   return (
-    <div className="row h-25 align-items-center justify-content-center">
-      <div className="col-12">
-        <p>{showLatitude}</p>
-        <h3>{props.latitude}</h3>
+    <div className="row justify-content-center align-items-center">
+      <div className="col-6">
+        <div className="coordinates">
+          {showLatitude}
+          <p>{props.latitude}</p>
+        </div>
       </div>
-      <div className="col-12">
-        <p> {showLongitude}</p>
-
-        <h3>{props.longitude}</h3>
+      <div className="col-6">
+        <div className="coordinates">
+          {showLongitude}
+          <p>{props.longitude}</p>
+        </div>
       </div>
     </div>
   );

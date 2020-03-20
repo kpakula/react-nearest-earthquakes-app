@@ -1,22 +1,15 @@
 .earthquakes {
     width: 100%;
     padding: 0;
-    margin: auto;
 
 }
 
 .earthquake {
     font-size: 17px;
-    margin-top: 15px;
+    margin-top: 17px;
     padding: 5px;
 }
 
-.earthquake {
-    font-size: 17px;
-    margin-top: 15px;
-    padding: 5px;
-
-}
 
 .earthquake p {
     display: inline;
@@ -25,7 +18,7 @@
 }
 
 .earthquake p:first-child {
-    font-size: 25px;
+    font-size: 24px;
     color: aliceblue;
 }
 
@@ -39,4 +32,16 @@
     background-color: rgb(48, 113, 252);
     cursor: pointer;
     border-radius: 15px;
+}
+
+@media only screen and (max-width: 575.98px) {
+    .earthquake {
+        font-size: 14px;
+        margin-top: 0px;
+        padding: 2px;
+    }
+
+    .earthquake:first-child {
+        margin-top: 5px;
+    }
 }
