@@ -3,7 +3,8 @@ import L from "leaflet";
 import { MAP_LAYER, MAP_CREDENTIALS } from "../../utils/Api";
 
 import "./MapView.css";
-import Haversine from "../../utils/Haversine";
+
+
 export class MapView extends React.Component {
   componentDidMount() {
     this.polyline = null;
@@ -38,7 +39,7 @@ export class MapView extends React.Component {
         if (index === 0) {
           currentMarker.bindPopup('Your location').openPopup();
         } else {
-          currentMarker.bindPopup('Earthquake').openPopup();
+          currentMarker.bindPopup(marker.title).openPopup();
         }
       });
 
@@ -54,13 +55,8 @@ export class MapView extends React.Component {
           this.polyline.remove();
         }
 
-        const distance = Haversine.calculateDistance(
-          markers[0].latitude, markers[0].longitude,
-          markers[1].latitude, markers[1].longitude
-        )
-
         var polyline = L.polyline(latlngs, { color: "red" }).addTo(this.map);
-        polyline.bindPopup("Distance: " + distance.toString()).openPopup()
+        polyline.bindPopup("Distance: " + markers[1].kilometers).openPopup()
         this.polyline = polyline;
 
         this.map.fitBounds(polyline.getBounds());

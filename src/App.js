@@ -92,6 +92,7 @@ function App() {
 
     const updatedEarthquakes = [...topEarthquakes];
 
+
     updatedEarthquakes.forEach((earthquake, index) => {
       if (index !== id) {
         earthquake.clicked = false;
@@ -105,13 +106,19 @@ function App() {
         ...markers,
         {
           latitude: updatedEarthquakes[id].latitude,
-          longitude: updatedEarthquakes[id].longitude
+          longitude: updatedEarthquakes[id].longitude,
+          kilometers: updatedEarthquakes[id].kilometers,
+          title: updatedEarthquakes[id].title,
+          date: updatedEarthquakes[id].date,
         }
       ]);
     } else {
       const updateMarkers = [...markers];
       updateMarkers[1].latitude = updatedEarthquakes[id].latitude;
       updateMarkers[1].longitude = updatedEarthquakes[id].longitude;
+      updateMarkers[1].kilometers = updatedEarthquakes[id].kilometers;
+      updateMarkers[1].title = updatedEarthquakes[id].title;
+      updateMarkers[1].date = updatedEarthquakes[id].date;
       setMarkers(updateMarkers);
     }
 
