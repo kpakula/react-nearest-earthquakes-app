@@ -30,13 +30,16 @@ export class MapView extends React.Component {
     this.layer.clearLayers();
 
     if (markers.length !== 0) {
-      markers.forEach(marker => {
+      markers.forEach((marker, index) => {
         const currentMarker = L.marker([marker.latitude, marker.longitude], {
-          title: "Your location"
+          // title: "Your location"
         }).addTo(this.layer);
 
-        // Popup
-        currentMarker.bindPopup('benc').openPopup();
+        if (index === 0) {
+          currentMarker.bindPopup('Your location').openPopup();
+        } else {
+          currentMarker.bindPopup('Earthquake').openPopup();
+        }
       });
 
       this.map.panTo(
