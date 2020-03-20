@@ -1,7 +1,7 @@
 import React from "react";
 import L from "leaflet";
 import { MAP_LAYER, MAP_CREDENTIALS } from "../../utils/Api";
-
+import moment from "moment";
 import "./MapView.css";
 
 
@@ -39,7 +39,10 @@ export class MapView extends React.Component {
         if (index === 0) {
           currentMarker.bindPopup('<p>Your location <img src="" height="18px"/></p>').openPopup();
         } else {
-          currentMarker.bindPopup(marker.title).openPopup();
+          currentMarker.bindPopup(
+            `<p>${marker.title}</p>` + 
+            `<p>${moment(marker.date).format("DD-MM-YYYY HH:mm")}</p>`
+            ).openPopup();
         }
       });
 

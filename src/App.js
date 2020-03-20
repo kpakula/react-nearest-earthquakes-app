@@ -18,7 +18,7 @@ function App() {
   const [currentLongitude, setCurrentLongitude] = useState(null);
   const [isResponse, setResponse] = useState(undefined);
   const [topEarthquakes, setTopEarthquakes] = useState([]);
-  const [amountOfTopNearestEarthquakes, setAmountOfTopNearestEarthquakes] = useState(25);
+  const [amountOfTopNearestEarthquakes, setAmountOfTopNearestEarthquakes] = useState(5);
 
   const request = async () => {
     setResponse(true);
