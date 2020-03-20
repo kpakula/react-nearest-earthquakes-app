@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Col, Row } from "react-bootstrap";
-
+import { DEFAULT_COORDINATES_LATITUDE, DEFAULT_COORDINATES_LONGITUDE} from "../../utils/Api";
 export default function CurrentGeoLocation({ handleUpdateCurrentLocation }) {
   
   useEffect(() => {
@@ -30,6 +30,7 @@ export default function CurrentGeoLocation({ handleUpdateCurrentLocation }) {
   }
 
   function error(err) {
+    handleUpdateCurrentLocation(DEFAULT_COORDINATES_LATITUDE, DEFAULT_COORDINATES_LONGITUDE);
     console.warn(`Error(${err.code}): ${err.message}`);
   }
 

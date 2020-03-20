@@ -7,4 +7,12 @@ const MAP_LAYER =
 const MAP_CREDENTIALS =
   '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>';
 
-module.exports = { EARTHQUAKE_API, MAP_LAYER, MAP_CREDENTIALS };
+const DEFAULT_COORDINATES_LATITUDE = 52.237049;
+const DEFAULT_COORDINATES_LONGITUDE = 21.017632;
+module.exports = { 
+  EARTHQUAKE_API,
+  MAP_LAYER,
+  MAP_CREDENTIALS,
+  DEFAULT_COORDINATES_LATITUDE,
+  DEFAULT_COORDINATES_LONGITUDE
+};
