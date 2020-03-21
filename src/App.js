@@ -32,7 +32,6 @@ function App() {
     setCurrentLongitude(randomLong);
 
     setTopEarthquakes([]);
-
   };
   const handleShow = () => setShowModal(true);
 
@@ -64,6 +63,22 @@ function App() {
 
   const handleUpdateCurrentLocation = (lat, long) => {
     setMarkers([{ latitude: lat, longitude: long }]);
+
+    axios
+      .get(`https://geocode.xyz/${lat},${long}?geoit=json`)
+      .then(res => {
+        const city = res.data.city;
+        const country = res.data.country;
+
+        setMarkers([
+          { latitude: lat, longitude: long, city: city, country: country }
+        ]);
+      })
+      .catch(err => {
+        console.log(err);
+      })
+      .then(() => {});
+
     setCurrentLatitude(lat);
     setCurrentLongitude(long);
 
@@ -184,8 +199,7 @@ function App() {
                 />
               )}
 
-                {isResponse && <ReactLoading type="bars" />}
-
+              {isResponse && <ReactLoading type="bars" />}
             </div>
           </div>
         </div>

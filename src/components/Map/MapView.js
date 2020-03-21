@@ -37,7 +37,11 @@ export class MapView extends React.Component {
         }).addTo(this.layer);
 
         if (index === 0) {
-          currentMarker.bindPopup('<p>Your location <img src="" height="18px"/></p>').openPopup();
+          currentMarker.bindPopup(
+            `<p>Your location:<br>` +
+            `${marker.city ? marker.city + "": ''} ` +
+            `${marker.country ? marker.country : ''}` +
+            `</p>`).openPopup();
         } else {
           currentMarker.bindPopup(
             `<div class='marker-popup'>` +
