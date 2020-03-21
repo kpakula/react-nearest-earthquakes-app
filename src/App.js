@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import {
-  Container,
-} from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import CurrentGeoLocation from "./components/Position/CurrentGeoLocation";
 import Coordinates from "./components/Info/Coordinates";
 import MapAdapter from "./components/Map/MapAdapter";
@@ -25,27 +23,23 @@ function App() {
 
   //Long -180 180  // -90 90
   const handleClose = () => setShowModal(false);
-  const handleSave = () => {
-
-  };
+  const handleSave = () => {};
 
   const handleRandom = () => {
-    const randomLat = (getRandomInRange(-90, 90)).toFixed(6)
-    const randomLong = (getRandomInRange(-180, 180)).toFixed(6)
+    const randomLat = getRandomInRange(-90, 90).toFixed(6);
+    const randomLong = getRandomInRange(-180, 180).toFixed(6);
 
-    handleUpdateCurrentLocation(randomLat, randomLong)
-    setCurrentLatitude(randomLat)
-    setCurrentLongitude(randomLong)
+    handleUpdateCurrentLocation(randomLat, randomLong);
+    setCurrentLatitude(randomLat);
+    setCurrentLongitude(randomLong);
 
-    setTopEarthquakes([])
-
-  }
+    setTopEarthquakes([]);
+  };
   const handleShow = () => setShowModal(true);
 
   const getRandomInRange = (min, max) => {
-    return Math.random() * (max - min) + min
-  }
-
+    return Math.random() * (max - min) + min;
+  };
 
   const request = async () => {
     setResponse(true);
@@ -74,9 +68,8 @@ function App() {
     setCurrentLatitude(lat);
     setCurrentLongitude(long);
 
-
     const isCorrect = markers[0];
-    console.log(isCorrect)
+
     if (isCorrect !== undefined) {
       setCurrentLatitude(isCorrect["latitude"]);
       setCurrentLongitude(isCorrect["longitude"]);
@@ -116,7 +109,6 @@ function App() {
 
     return earthquakes;
   };
-
 
   const handleCurrentPickedEarthquake = event => {
     const id = event.currentTarget.dataset.id;
@@ -161,60 +153,57 @@ function App() {
         handleUpdateCurrentLocation={handleUpdateCurrentLocation}
       ></CurrentGeoLocation>
 
-      <div className="row current">
+      <div className="row current h-100">
         <div className="col-12 col-lg-8 p-0 current-column">
           <MapAdapter markers={markers} />
         </div>
 
         <div className="col-12 col-lg-4 second-column">
-          <div className="container-fluid">
-            <Coordinates
-              latitude={currentLatitude}
-              longitude={currentLongitude}
-              handleShow={handleShow}
-            />
-
-            <div className="row">
-              <div className="col">
-                <div className="getBtn">
-                  <button
-                    type="button"
-                    className="btn btn-secondary btn-lg btn-block"
-                    onClick={request}
-                  >
-                    Check
-                  </button>
-                </div>
-                <div className="loading">
-                  {isResponse && <ReactLoading type="bars" />}
-                </div>
-              </div>
+          <div className="h-100 d-flex flex-column">
+            <div className="row justify-content-center">
+              <Coordinates
+                latitude={currentLatitude}
+                longitude={currentLongitude}
+                handleShow={handleShow}
+              />
             </div>
-            <div className="row">
-              <div className="col">
-                {topEarthquakes.length > 0 && (
-                  <Earthquakes
-                    topEarthquakes={topEarthquakes}
-                    handleCurrentPickedEarthquake={
-                      handleCurrentPickedEarthquake
-                    }
-                  />
-                )}
-              </div>
+            <div className="row justify-content-center">
+              <button
+                type="button"
+                className="btn btn-secondary btn-lg btn-block"
+                onClick={request}
+              >
+                Check
+              </button>
+            </div>
+
+            <div className="row justify-content-center align-items-center flex-grow-1">
+              {topEarthquakes.length > 0 && (
+                <Earthquakes
+                  topEarthquakes={topEarthquakes}
+                  handleCurrentPickedEarthquake={handleCurrentPickedEarthquake}
+                />
+              )}
+
+                {isResponse && <ReactLoading type="bars" />}
+
             </div>
           </div>
         </div>
+
+        {/* <img
+              className="spin"
+              src="https://image.flaticon.com/icons/svg/921/921490.svg"
+              alt="earth"
+            ></img> */}
       </div>
       <CustomModal
         isShowModal={isShowModal}
         handleClose={handleClose}
         handleSave={handleSave}
         handleRandom={handleRandom}
-
         currentLatitude={currentLatitude}
         currentLongitude={currentLongitude}
-
-
       />
     </Container>
   );

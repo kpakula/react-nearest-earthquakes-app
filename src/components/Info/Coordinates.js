@@ -13,23 +13,21 @@ export default function Coordinates({ latitude, longitude, handleShow }) {
   }
 
   return (
-    <div className="row justify-content-center align-items-center">
-      <div className="col-6">
+      <div className="row justify-content-center w-100">
+        <div className="col-6">
         <Coordinate
           handleShow={handleShow}
           showLabel={showLatitude}
           coordinate={latitude}
         />
-      </div>
-      <div className="col-6">
+        </div>
+        <div className="col-6">
         <Coordinate
           handleShow={handleShow}
           showLabel={showLongitude}
           coordinate={longitude}
         />
+        </div>
       </div>
-
-
-    </div>
   );
 }

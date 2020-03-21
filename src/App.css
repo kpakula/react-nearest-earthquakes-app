@@ -51,4 +51,23 @@ h3 {
 
 
 
+.spin {
+  -webkit-animation:spin 10s linear infinite;
+  -moz-animation:spin 10s linear infinite;
+  animation:spin 10s linear infinite;
+  height: 350px;
+  margin: 0;
+  padding: 0;
+  
+}
 
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+
+
+@media only screen and (max-width: 991.98px) {
+  .spin {
+    height: 130px;
+  }
+}
