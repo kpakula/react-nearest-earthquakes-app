@@ -3,10 +3,6 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {
   Container,
-  Modal,
-  InputGroup,
-  FormControl,
-  Button
 } from "react-bootstrap";
 import CurrentGeoLocation from "./components/Position/CurrentGeoLocation";
 import Coordinates from "./components/Info/Coordinates";
@@ -27,11 +23,29 @@ function App() {
   const [topEarthquakes, setTopEarthquakes] = useState([]);
   const [isShowModal, setShowModal] = useState(false);
 
+  //Long -180 180  // -90 90
   const handleClose = () => setShowModal(false);
   const handleSave = () => {
-    console.log("BENC");
+
   };
+
+  const handleRandom = () => {
+    const randomLat = (getRandomInRange(-90, 90)).toFixed(6)
+    const randomLong = (getRandomInRange(-180, 180)).toFixed(6)
+
+    handleUpdateCurrentLocation(randomLat, randomLong)
+    setCurrentLatitude(randomLat)
+    setCurrentLongitude(randomLong)
+
+    setTopEarthquakes([])
+
+  }
   const handleShow = () => setShowModal(true);
+
+  const getRandomInRange = (min, max) => {
+    return Math.random() * (max - min) + min
+  }
+
 
   const request = async () => {
     setResponse(true);
@@ -60,7 +74,9 @@ function App() {
     setCurrentLatitude(lat);
     setCurrentLongitude(long);
 
+
     const isCorrect = markers[0];
+    console.log(isCorrect)
     if (isCorrect !== undefined) {
       setCurrentLatitude(isCorrect["latitude"]);
       setCurrentLongitude(isCorrect["longitude"]);
@@ -100,6 +116,7 @@ function App() {
 
     return earthquakes;
   };
+
 
   const handleCurrentPickedEarthquake = event => {
     const id = event.currentTarget.dataset.id;
@@ -188,7 +205,17 @@ function App() {
           </div>
         </div>
       </div>
-      <CustomModal isShowModal={isShowModal} handleClose={handleClose} handleSave={handleSave}/>
+      <CustomModal
+        isShowModal={isShowModal}
+        handleClose={handleClose}
+        handleSave={handleSave}
+        handleRandom={handleRandom}
+
+        currentLatitude={currentLatitude}
+        currentLongitude={currentLongitude}
+
+
+      />
     </Container>
   );
 }

@@ -54,6 +54,12 @@ export class MapView extends React.Component {
         5
       );
 
+      if (markers.length === 1) {
+        if (this.polyline !== null) {
+          this.polyline.remove();
+        }
+      }
+
       if (markers.length === 2) {
         const latlngs = this.getCurrentLatitudeAndLongitude(markers)
 

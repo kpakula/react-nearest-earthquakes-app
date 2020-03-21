@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Coordinates.css";
 import Coordinate from "./Coordinate";
 export default function Coordinates({ latitude, longitude, handleShow }) {
