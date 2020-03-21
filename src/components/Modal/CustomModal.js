@@ -4,14 +4,10 @@ import { Modal, InputGroup, FormControl, Button } from "react-bootstrap";
 function CustomModal({
   isShowModal,
   handleClose,
-  handleSave,
   currentLatitude,
   currentLongitude,
   handleRandom
 }) {
-//   const isNumeric = num => {
-//     return !isNaN(num);
-//   };
 
   return (
     //   <div></div>
@@ -74,9 +70,6 @@ function CustomModal({
       <Modal.Footer>
         <Button variant="secondary" onClick={handleClose}>
           Close
-        </Button>
-        <Button variant="primary" onClick={handleSave}>
-          Save
         </Button>
       </Modal.Footer>
     </Modal>

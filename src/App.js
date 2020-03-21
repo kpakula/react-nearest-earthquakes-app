@@ -21,9 +21,7 @@ function App() {
   const [topEarthquakes, setTopEarthquakes] = useState([]);
   const [isShowModal, setShowModal] = useState(false);
 
-  //Long -180 180  // -90 90
   const handleClose = () => setShowModal(false);
-  const handleSave = () => {};
 
   const handleRandom = () => {
     const randomLat = getRandomInRange(-90, 90).toFixed(6);
@@ -34,6 +32,7 @@ function App() {
     setCurrentLongitude(randomLong);
 
     setTopEarthquakes([]);
+
   };
   const handleShow = () => setShowModal(true);
 
@@ -200,7 +199,6 @@ function App() {
       <CustomModal
         isShowModal={isShowModal}
         handleClose={handleClose}
-        handleSave={handleSave}
         handleRandom={handleRandom}
         currentLatitude={currentLatitude}
         currentLongitude={currentLongitude}

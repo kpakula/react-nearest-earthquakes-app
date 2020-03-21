@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { Col, Row } from "react-bootstrap";
+import coordinates from "../../utils/Coords"
 import { DEFAULT_COORDINATES_LATITUDE, DEFAULT_COORDINATES_LONGITUDE} from "../../utils/Api";
 export default function CurrentGeoLocation({ handleUpdateCurrentLocation }) {
   
@@ -18,11 +19,7 @@ export default function CurrentGeoLocation({ handleUpdateCurrentLocation }) {
   function success(position) {
     const crd = position.coords;
 
-    let coordinate = {
-      latitude: crd.latitude,
-      longitude: crd.longitude,
-      date: new Date()
-    };
+    const coordinate = coordinates(crd.latitude, crd.longitude);
 
     handleUpdateCurrentLocation(coordinate.latitude, coordinate.longitude);
 
