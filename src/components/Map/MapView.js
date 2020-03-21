@@ -72,7 +72,7 @@ export class MapView extends React.Component {
         }
 
         var polyline = L.polyline(latlngs, { color: "red" }).addTo(this.map);
-        polyline.bindPopup("Distance: " + markers[1].kilometers).openPopup()
+        polyline.bindPopup("Distance: " + markers[1].kilometers + " km").openPopup()
         this.polyline = polyline;
 
         this.map.fitBounds(polyline.getBounds());
