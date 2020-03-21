@@ -1,8 +1,14 @@
 import React, { useState } from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Container } from "react-bootstrap";
-import CurrentGeoLocation  from "./components/Position/CurrentGeoLocation";
+import {
+  Container,
+  Modal,
+  InputGroup,
+  FormControl,
+  Button
+} from "react-bootstrap";
+import CurrentGeoLocation from "./components/Position/CurrentGeoLocation";
 import Coordinates from "./components/Info/Coordinates";
 import MapAdapter from "./components/Map/MapAdapter";
 import axios from "axios";
@@ -11,6 +17,7 @@ import Haversine from "./utils/Haversine";
 import Earthquake from "./utils/Earthquake";
 import Earthquakes from "./components/Earthquakes";
 import { EARTHQUAKE_API } from "./utils/Api";
+import CustomModal from "./components/Modal/CustomModal";
 
 function App() {
   const [markers, setMarkers] = useState([]);
@@ -18,6 +25,13 @@ function App() {
   const [currentLongitude, setCurrentLongitude] = useState(null);
   const [isResponse, setResponse] = useState(undefined);
   const [topEarthquakes, setTopEarthquakes] = useState([]);
+  const [isShowModal, setShowModal] = useState(false);
+
+  const handleClose = () => setShowModal(false);
+  const handleSave = () => {
+    console.log("BENC");
+  };
+  const handleShow = () => setShowModal(true);
 
   const request = async () => {
     setResponse(true);
@@ -92,7 +106,6 @@ function App() {
 
     const updatedEarthquakes = [...topEarthquakes];
 
-
     updatedEarthquakes.forEach((earthquake, index) => {
       if (index !== id) {
         earthquake.clicked = false;
@@ -109,7 +122,7 @@ function App() {
           longitude: updatedEarthquakes[id].longitude,
           kilometers: updatedEarthquakes[id].kilometers,
           title: updatedEarthquakes[id].title,
-          date: updatedEarthquakes[id].date,
+          date: updatedEarthquakes[id].date
         }
       ]);
     } else {
@@ -141,6 +154,7 @@ function App() {
             <Coordinates
               latitude={currentLatitude}
               longitude={currentLongitude}
+              handleShow={handleShow}
             />
 
             <div className="row">
@@ -174,6 +188,7 @@ function App() {
           </div>
         </div>
       </div>
+      <CustomModal isShowModal={isShowModal} handleClose={handleClose} handleSave={handleSave}/>
     </Container>
   );
 }
