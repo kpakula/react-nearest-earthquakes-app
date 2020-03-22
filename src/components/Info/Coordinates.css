@@ -6,12 +6,11 @@
 .coordinates:hover {
     background-color: black;
 
-    background-color: rgb(48, 113, 252);
+    background-color: #5d11b7;
     cursor: pointer;
     border-radius: 15px;
 
 }
-
 .coordinates p {
     font-size: larger;
 

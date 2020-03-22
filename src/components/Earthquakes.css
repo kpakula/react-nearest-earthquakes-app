@@ -23,13 +23,13 @@
 }
 
 .earthquake:hover {
-    background-color: rgb(48, 113, 252);
+    background-color: #5d11b7;
     cursor: pointer;
     border-radius: 15px;
 }
 
 .earthquake-clicked {
-    background-color: rgb(48, 113, 252);
+    background-color: #5d11b7;
     cursor: pointer;
     border-radius: 15px;
 }
