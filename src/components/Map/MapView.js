@@ -4,7 +4,6 @@ import { MAP_LAYER, MAP_CREDENTIALS } from "../../utils/Api";
 import moment from "moment";
 import "./MapView.css";
 
-
 export class MapView extends React.Component {
   componentDidMount() {
     this.polyline = null;
@@ -37,19 +36,24 @@ export class MapView extends React.Component {
         }).addTo(this.layer);
 
         if (index === 0) {
-          currentMarker.bindPopup(
-            `<p>Your location:<br>` +
-            `${marker.city ? marker.city + "": ''} ` +
-            `${marker.country ? marker.country : ''}` +
-            `</p>`).openPopup();
+          currentMarker
+            .bindPopup(
+              `<p>Your location:<br>` +
+                `${marker.city ? marker.city + "" : ""} ` +
+                `${marker.country ? marker.country : ""}` +
+                `</p>`
+            )
+            .openPopup();
         } else {
-          currentMarker.bindPopup(
-            `<div class='marker-popup'>` +
-            `<p >${marker.title}</p>` + 
-            `<p>${marker.latitude} | ${marker.longitude}</p>` +
-            `<p>${moment(marker.date).format("DD-MM-YYYY HH:mm")}</p>` +
-            `</div>`
-            ).openPopup();
+          currentMarker
+            .bindPopup(
+              `<div class='marker-popup'>` +
+                `<p >${marker.title}</p>` +
+                `<p>${marker.latitude} | ${marker.longitude}</p>` +
+                `<p>${moment(marker.date).format("DD-MM-YYYY HH:mm")}</p>` +
+                `</div>`
+            )
+            .openPopup();
         }
       });
 
@@ -65,27 +69,29 @@ export class MapView extends React.Component {
       }
 
       if (markers.length === 2) {
-        const latlngs = this.getCurrentLatitudeAndLongitude(markers)
+        const latlngs = this.getCurrentLatitudeAndLongitude(markers);
 
         if (this.polyline !== null) {
           this.polyline.remove();
         }
 
         var polyline = L.polyline(latlngs, { color: "red" }).addTo(this.map);
-        polyline.bindPopup("Distance: " + markers[1].kilometers + " km").openPopup()
+        polyline
+          .bindPopup("Distance: " + markers[1].kilometers + " km")
+          .openPopup();
         this.polyline = polyline;
 
         this.map.fitBounds(polyline.getBounds());
       }
     }
   }
-  
-  getCurrentLatitudeAndLongitude = (markers) => {
+
+  getCurrentLatitudeAndLongitude = markers => {
     return [
       [markers[0].latitude, markers[0].longitude],
       [markers[1].latitude, markers[1].longitude]
-    ]
-  }
+    ];
+  };
 
   render() {
     return <div id="map"></div>;

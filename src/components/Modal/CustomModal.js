@@ -10,7 +10,6 @@ function CustomModal({
 }) {
 
   return (
-    //   <div></div>
     <Modal show={isShowModal} onHide={handleClose}>
       <Modal.Header closeButton>
         <Modal.Title>Coordinates</Modal.Title>

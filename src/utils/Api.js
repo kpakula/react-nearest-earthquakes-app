@@ -9,10 +9,16 @@ const MAP_CREDENTIALS =
 
 const DEFAULT_COORDINATES_LATITUDE = 52.237049;
 const DEFAULT_COORDINATES_LONGITUDE = 21.017632;
-module.exports = { 
+
+const LOCATION_API = (lat, long) => {
+  return `https://geocode.xyz/${lat},${long}?geoit=json`;
+};
+
+module.exports = {
   EARTHQUAKE_API,
   MAP_LAYER,
   MAP_CREDENTIALS,
   DEFAULT_COORDINATES_LATITUDE,
-  DEFAULT_COORDINATES_LONGITUDE
+  DEFAULT_COORDINATES_LONGITUDE,
+  LOCATION_API
 };

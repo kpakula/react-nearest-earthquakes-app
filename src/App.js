@@ -10,7 +10,7 @@ import ReactLoading from "react-loading";
 import Haversine from "./utils/Haversine";
 import Earthquake from "./utils/Earthquake";
 import Earthquakes from "./components/Earthquakes";
-import { EARTHQUAKE_API } from "./utils/Api";
+import { EARTHQUAKE_API, LOCATION_API } from "./utils/Api";
 import CustomModal from "./components/Modal/CustomModal";
 import CheckButton from "./components/Buttons/CheckButton";
 import getRandomInRange from "./utils/Random"
@@ -23,26 +23,6 @@ function App() {
   const [topEarthquakes, setTopEarthquakes] = useState([]);
   const [isShowModal, setShowModal] = useState(false);
 
-
-  const handleClose = () => setShowModal(false);
-  const handleShow = () => setShowModal(true);
-
-
-  const getRandomCoordinates = () => {
-    const randomLat = getRandomInRange(-90, 90).toFixed(6);
-    const randomLong = getRandomInRange(-180, 180).toFixed(6);
-
-    handleUpdateCurrentLocation(randomLat, randomLong);
-    setCurrentLatitude(randomLat);
-    setCurrentLongitude(randomLong);
-
-    setTopEarthquakes([]);
-  };
-
-
-
-
-
   const makeEarthquakesRequest = async () => {
 
     setLoadingBar(true);
@@ -50,7 +30,7 @@ function App() {
     try {
       const response = await axios.get(EARTHQUAKE_API);
 
-      let allEarthquakes = mapEarthquakes(response);
+      let allEarthquakes = mapResponseWithEarthquakes(response);
 
       allEarthquakes.sort((a, b) => {
         return a.kilometers - b.kilometers;
@@ -70,7 +50,7 @@ function App() {
     setMarkers([{ latitude: lat, longitude: long }]);
 
     axios
-      .get(`https://geocode.xyz/${lat},${long}?geoit=json`)
+      .get(LOCATION_API(lat, long))
       .then(res => {
         const city = res.data.city;
         const country = res.data.country;
@@ -95,18 +75,16 @@ function App() {
     }
   };
 
-  const mapEarthquakes = response => {
+
+
+  const mapResponseWithEarthquakes = response => {
     let earthquakes = [];
     const length = response.data.features.length;
 
     for (let i = 0; i < length; i++) {
-      const earthquakeTitle = response.data.features[i].properties.title;
-      const earthquakeLongitude =
-        response.data.features[i].geometry.coordinates[0];
-      const earthquakeLatitude =
-        response.data.features[i].geometry.coordinates[1];
-      const date = response.data.features[i].properties.time;
-
+      const currentEarthquake = response.data.features[i];
+      const { earthquakeTitle, earthquakeLongitude, earthquakeLatitude, date } = mapResponseToCurrentEarthquake(currentEarthquake);
+      
       const kilometers = Math.round(
         Haversine.calculateDistance(
           currentLatitude,
@@ -115,6 +93,7 @@ function App() {
           earthquakeLongitude
         )
       );
+
       const earthquake = new Earthquake(
         earthquakeTitle,
         earthquakeLongitude,
@@ -129,7 +108,28 @@ function App() {
     return earthquakes;
   };
 
+  const mapResponseToCurrentEarthquake = (currentEarthquake) => {
+    return {
+      earthquakeTitle: currentEarthquake.properties.title,
+      earthquakeLongitude: currentEarthquake.geometry.coordinates[0],
+      earthquakeLatitude: currentEarthquake.geometry.coordinates[1],
+      date: currentEarthquake.properties.time
+    }
+  }
 
+  const getRandomCoordinates = () => {
+    const randomLat = getRandomInRange(-90, 90).toFixed(6);
+    const randomLong = getRandomInRange(-180, 180).toFixed(6);
+
+    handleUpdateCurrentLocation(randomLat, randomLong);
+    setCurrentLatitude(randomLat);
+    setCurrentLongitude(randomLong);
+
+    setTopEarthquakes([]);
+  };
+
+  const handleClose = () => setShowModal(false);
+  const handleShow = () => setShowModal(true);
 
   return (
     <Container fluid={true} className="App">
