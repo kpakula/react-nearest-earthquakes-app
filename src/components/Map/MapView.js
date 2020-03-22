@@ -26,32 +26,42 @@ export class MapView extends React.Component {
     }
   }
 
+  initialInfo = (marker) => {
+    return (`<p>Your location:<br>` +
+    `${marker.city ? marker.city + "" : ""} ` +
+    `${marker.country ? marker.country : ""}` +
+    `</p>`)
+  }
+
+  secondMarkerInfo = (marker) => {
+    return (
+      `<div class='marker-popup'>` +
+      `<p >${marker.title}</p>` +
+      `<p>${marker.latitude} | ${marker.longitude}</p>` +
+      `<p>${moment(marker.date).format("DD-MM-YYYY HH:mm")}</p>` +
+      `</div>`
+    )
+  }
+
   updateMarkers(markers) {
     this.layer.clearLayers();
 
     if (markers.length !== 0) {
       markers.forEach((marker, index) => {
         const currentMarker = L.marker([marker.latitude, marker.longitude], {
-          // title: "Your location"
+
         }).addTo(this.layer);
 
         if (index === 0) {
           currentMarker
             .bindPopup(
-              `<p>Your location:<br>` +
-                `${marker.city ? marker.city + "" : ""} ` +
-                `${marker.country ? marker.country : ""}` +
-                `</p>`
+              this.initialInfo(marker)
             )
             .openPopup();
         } else {
           currentMarker
             .bindPopup(
-              `<div class='marker-popup'>` +
-                `<p >${marker.title}</p>` +
-                `<p>${marker.latitude} | ${marker.longitude}</p>` +
-                `<p>${moment(marker.date).format("DD-MM-YYYY HH:mm")}</p>` +
-                `</div>`
+              this.secondMarkerInfo(marker)
             )
             .openPopup();
         }
@@ -85,6 +95,7 @@ export class MapView extends React.Component {
       }
     }
   }
+
 
   getCurrentLatitudeAndLongitude = markers => {
     return [
