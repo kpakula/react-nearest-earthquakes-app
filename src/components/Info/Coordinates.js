@@ -13,6 +13,7 @@ export default function Coordinates({ latitude, longitude, handleShow }) {
   }
 
   return (
+    <div className="row justify-content-center">
       <div className="row justify-content-center w-100">
         <div className="col-6">
         <Coordinate
@@ -28,6 +29,7 @@ export default function Coordinates({ latitude, longitude, handleShow }) {
           coordinate={longitude}
         />
         </div>
+      </div>
       </div>
   );
 }

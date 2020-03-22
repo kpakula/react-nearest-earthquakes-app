@@ -12,6 +12,7 @@ import Earthquake from "./utils/Earthquake";
 import Earthquakes from "./components/Earthquakes";
 import { EARTHQUAKE_API } from "./utils/Api";
 import CustomModal from "./components/Modal/CustomModal";
+import CheckButton from "./components/Buttons/CheckButton";
 
 function App() {
   const [markers, setMarkers] = useState([]);
@@ -168,28 +169,17 @@ function App() {
       ></CurrentGeoLocation>
 
       <div className="row current h-100">
-        <div className="col-12 col-lg-8 p-0 current-column">
-          <MapAdapter markers={markers} />
-        </div>
+        <MapAdapter markers={markers} />
 
         <div className="col-12 col-lg-4 second-column">
           <div className="h-100 d-flex flex-column">
-            <div className="row justify-content-center">
-              <Coordinates
-                latitude={currentLatitude}
-                longitude={currentLongitude}
-                handleShow={handleShow}
-              />
-            </div>
-            <div className="row justify-content-center">
-              <button
-                type="button"
-                className="btn btn-secondary btn-lg btn-block"
-                onClick={request}
-              >
-                Check
-              </button>
-            </div>
+            <Coordinates
+              latitude={currentLatitude}
+              longitude={currentLongitude}
+              handleShow={handleShow}
+            />
+
+            <CheckButton request={request} />
 
             <div className="row justify-content-center align-items-center flex-grow-1">
               {topEarthquakes.length > 0 && (
@@ -198,17 +188,10 @@ function App() {
                   handleCurrentPickedEarthquake={handleCurrentPickedEarthquake}
                 />
               )}
-
               {isResponse && <ReactLoading type="bars" />}
             </div>
           </div>
         </div>
-
-        {/* <img
-              className="spin"
-              src="https://image.flaticon.com/icons/svg/921/921490.svg"
-              alt="earth"
-            ></img> */}
       </div>
       <CustomModal
         isShowModal={isShowModal}
