@@ -20,6 +20,11 @@ npm start
 ## Used API
 https://earthquake.usgs.gov/earthquakes/feed/v1.0/
 
+https://geocode.xyz/
+
 ## Used technologies
 * React.js
 * Bootstrap
+
+## Live
+https://desolate-refuge-18807.herokuapp.com/
